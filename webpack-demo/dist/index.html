@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Castoro&family=Yellowtail&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/7e153de9b5.js" crossorigin="anonymous"></script>
+  <title>Home</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    #navbar {
+      display: grid;
+      grid-template-columns: 20% 50% 30%;
+      padding: 10px;
+      box-shadow: rgb(0 0 0 / 71%) 0px -4px 15px -1px;
+      grid-row-gap: 10px;
+    }
+
+    #search-div {
+      width: 80%;
+      border: 1px solid rgb(0, 0, 0, 0.2);
+      padding: 6px 5px 6px 30px;
+      margin: 0 auto;
+      border-radius: 40px;
+      background-color: #EEEEEE;
+    }
+
+    #account {
+      display: flex;
+      width: 80%;
+      text-align: right;
+      justify-content: flex-end;
+    }
+
+    #account>div {
+      width: 27%;
+      font-size: 20px;
+      font-family: 'Castoro', serif;
+      font-weight: 600;
+      margin: 10px 0px;
+      cursor: pointer;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      background: white;
+      z-index: 5;
+    }
+
+    #navbar #title {
+      font-size: 35px;
+      font-family: 'Yellowtail', cursive;
+      color: #4d5266;
+      text-align: center;
+    }
+
+    #navbar #title span {
+      color: #fad744
+    }
+
+    #search-div input {
+      width: 93%;
+      font-size: 18px;
+      border: none;
+      padding: 3px 10px;
+      font-family: 'Circular-Loom';
+      background-color: #EEEEEE;
+    }
+
+    #search-div input:focus {
+      outline: none;
+    }
+
+    #search-result-box {
+      height: fit-content;
+      max-height: 200px;
+      overflow: auto;
+      width: 42%;
+      margin: auto;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      position: fixed;
+      left: 24.5%;
+      top: 8%;
+      padding: 5px 0px;
+      z-index: 5;
+      background: white;
+      display: none;
+    }
+
+    #search-result-box p {
+      margin: 2px 0px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 18px;
+      font-family: 'Circular-Loom';
+    }
+
+    #search-result-box p:hover {
+      background: #EEEEEE;
+    }
+
+    #extra-search {
+      grid-column: 1 /span 3;
+      display: flex;
+      padding: 0px 14px;
+    }
+
+    #extra-search p {
+      margin: 10px 15px 0px;
+      font-size: 20px;
+      font-family: 'Castoro', serif;
+      font-weight: 600;
+      opacity: 0.5;
+    }
+
+    #extra-search p:hover {
+      opacity: 1;
+    }
+
+    .img-container {
+      display: grid;
+      width: 80%;
+      grid-template-columns: repeat(3, 1fr);
+      margin: 10px auto;
+      grid-gap: 10px 20px;
+    }
+
+    .img-container img {
+      width: 100%;
+      margin: 5px 0px;
+    }
+
+    #serach-title {
+      grid-column: 1 /span 3;
+      font-size: 50px;
+      margin: 15px 0px;
+      font-family: 'Castoro', serif;
+      font-weight: 800;
+    }
+
+    .addToLike {
+      margin-top: 15px;
+      position: absolute;
+      text-align: right;
+      /* color: wheat; */
+      height: 35px;
+      width: 40px;
+      margin-left: 22%;
+      background: white;
+      border: none;
+      text-align: center;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .addToLike i {
+      opacity: 0.8;
+      font-size: 20px;
+    }
+
+    .addToLike i:hover {
+      color: red;
+    }
+
+    #img-div1,
+    #img-div2,
+    #img-div3 {
+      height: fit-content;
+    }
+
+    #selected-img-pop {
+      position: fixed;
+      background: white;
+      box-shadow: rgb(0 0 0 / 71%) 0px -4px 15px -1px;
+      width: 70vw;
+      height: 600px;
+      top: 15%;
+      left: 15%;
+      border-radius: 12px;
+    }
+
+    #close-pop-up {
+      text-align: right;
+      padding: 10px 15px 5px;
+      font-size: 25px;
+    }
+
+    #close-pop-up i {
+      opacity: 0.5;
+      cursor: pointer;
+    }
+
+    #close-pop-up i:hover {
+      opacity: 1;
+    }
+
+    #selected-img-pop {
+      display: none;
+    }
+
+    #selected-img-pop img {
+      width: 80%;
+      height: 500px;
+    }
+
+    #pop-up-divs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 15px;
+    }
+
+    #image-div {
+      width: 90%;
+      text-align: right;
+    }
+
+    #profile-img {
+      margin-left: 10px;
+      display: flex;
+    }
+
+    #profile-img img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    #picture-clicker-name {
+      margin: 5px 15px 0px;
+      font-size: 18px;
+      font-family: 'Castoro', serif;
+      font-weight: 600;
+    }
+
+    #image-title, #image-description {
+      font-family: 'Castoro', serif;
+      margin: 25px 15px;
+      font-size: 18px;
+    }
+
+    #image-title {
+      margin-top: 50px;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    #twitter-userName {
+      margin-left: 15px;
+      color: #339AF0
+    }
+
+    #twitter-userName i {
+      margin-left: 5px;
+    }
+
+    #pagination {
+      text-align: center;
+      margin: 50px 0px;
+    }
+
+    #pagination button {
+      width: 35px;
+      height: 35px;
+      margin: 0 3px;
+      background: none;
+      cursor: pointer;
+      font-size: 20px;
+      text-align: center;
+      padding: 0px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <nav>
+      <div id="navbar">
+        <div id="title">Images<span>HUB</span></div>
+        <div>
+          <div id="search-div">
+            <i class="fas fa-search"></i>
+            <input type="text" id="Searchquery" placeholder="Search free high resolution images">
+          </div>
+        </div>
+        <div id="account">
+          <div onclick="showCollectionsOfLikedImages()">Collections</div>
+          <div onclick="window.location.href='login.html'">Log in</div>
+          <div>Sign up</div>
+        </div>
+        <div id="extra-search">
+          <p onclick="getPhotosByquery('india')">India</p>
+          <p onclick="getPhotosByquery('Technology')">Technology</p>
+          <p onclick="getPhotosByquery('Nature')">Nature</p>
+          <p onclick="getPhotosByquery('People')">People</p>
+          <p onclick="getPhotosByquery('Business')">Business</p>
+          <p onclick="getPhotosByquery('Wallpaper')">Wallpaper</p>
+          <p onclick="getPhotosByquery('Fashion')">Fashion</p>
+          <p onclick="getPhotosByquery('Interview')">Interview</p>
+          <p onclick="getPhotosByquery('Architecture')">Architecture</p>
+          <p onclick="getPhotosByquery('Flim')">Flim</p>
+          <p onclick="getPhotosByquery('Health')">Health</p>
+          <p onclick="getPhotosByquery('Spirituality')">Spirituality</p>
+          <p onclick="getPhotosByquery('Animals')">Animals</p>
+          <p onclick="getPhotosByquery('Athletics')">Athletics</p>
+        </div>
+      </div>
+    </nav>
+    <div id="search-result-box">
+      <p>India</p>
+    </div>
+
+    <div style="height: 150px; width: 100vw;"></div>
+    <div class="img-container">
+      <div id="serach-title">Textures</div>
+      <div id="img-div1">
+        <div>
+          <button class="addToLike" id="1" onclick="addToFavorites(id)"><i class="fas fa-heart"></i></button>
+          <img
+            src="https://images.unsplash.com/photo-1612898844180-fce3dc41bdb9?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8aVVJc25WdGpCMFl8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="">
+        </div>
+
+      </div>
+      <div id="img-div2">
+        <div>
+          <button class="addToLike" id="2" onclick="addToFavorites(id)"><i class="fas fa-heart"></i></button>
+          <img
+            src="https://images.unsplash.com/photo-1618160677051-36d34bbc3a26?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDN8aVVJc25WdGpCMFl8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="">
+        </div>
+      </div>
+      <div id="img-div3">
+        <div>
+          <button class="addToLike" id="3" onclick="addToFavorites(id)"><i class="fas fa-heart"></i></button>
+          <img
+            src="https://images.unsplash.com/photo-1572884745373-47cbb0ecc054?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8aVVJc25WdGpCMFl8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="">
+        </div>
+        <div>
+          <button class="addToLike" id="5" onclick="addToFavorites(id)"><i class="fas fa-heart"></i></button>
+          <img
+            src="https://images.unsplash.com/photo-1615761896293-6d24716c2222?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8aVVJc25WdGpCMFl8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+            alt="">
+        </div>
+
+      </div>
+    </div>
+
+    <div id="pagination">
+      <button class="temp1" id="1" onclick="getPhotosBypage(id)">1</button>
+      <button class="temp2" id="2" onclick="getPhotosBypage(id)">2</button>
+      <button class="temp3" id="3" onclick="getPhotosBypage(id)">3</button>
+      <button class="temp4" id="4" onclick="getPhotosBypage(id)">4</button>
+      <button class="temp5" id="5" onclick="getPhotosBypage(id)">5</button>
+    </div>
+  </div>
+
+  <div id="selected-img-pop">
+    <div id="close-pop-up" onclick="hidePopUp()"><i class="fas fa-times"></i></div>
+    <div id="pop-up-divs">
+      <div>
+        <div id="profile-img">
+          <img src="https://images.unsplash.com/profile-fb-1471309164-5227183afce9.jpg?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128" alt="">
+          <div>
+            <div id="picture-clicker-name">Saksham Gangwar</div>
+            <div id="twitter-userName">sakshamgangwar<i class="fab fa-twitter"></i></div>
+          </div>
+        </div>
+        <div id="image-title">Woman running on hallway</div>
+        <div id="image-description">In ancient northern India, Kathakas communicated stories from the great epics and ancient mythology through dance. Characterized by intricate footwork and precise rhythmic patterns, Kathak is one of the most complex Indian classical dance. Had privilege to experience it in real through a close friend of mine.</div>
+      </div>
+      <div id="image-div">
+        <img src="https://images.unsplash.com/photo-1479813183133-f2e9b38ed6c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNDM1Mjd8MHwxfHNlYXJjaHwyM3x8aW5kaWF8ZW58MHx8fHwxNjI1MjEzODgw&ixlib=rb-1.2.1&q=80&w=400" alt="">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script src="index.bundle.js"></script>
