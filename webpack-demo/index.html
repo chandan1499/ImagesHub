@@ -26,6 +26,10 @@
       grid-row-gap: 10px;
     }
 
+    .navLinks {
+      cursor: pointer;
+    }
+
     #search-div {
       width: 80%;
       border: 1px solid rgb(0, 0, 0, 0.2);
@@ -296,24 +300,24 @@
         </div>
         <div id="account">
           <div onclick="showCollectionsOfLikedImages()">Collections</div>
-          <div onclick="window.location.href='login.html'">Log in</div>
+          <div>Log in</div>
           <div>Sign up</div>
         </div>
         <div id="extra-search">
-          <p onclick="getPhotosByquery('india')">India</p>
-          <p onclick="getPhotosByquery('Technology')">Technology</p>
-          <p onclick="getPhotosByquery('Nature')">Nature</p>
-          <p onclick="getPhotosByquery('People')">People</p>
-          <p onclick="getPhotosByquery('Business')">Business</p>
-          <p onclick="getPhotosByquery('Wallpaper')">Wallpaper</p>
-          <p onclick="getPhotosByquery('Fashion')">Fashion</p>
-          <p onclick="getPhotosByquery('Interview')">Interview</p>
-          <p onclick="getPhotosByquery('Architecture')">Architecture</p>
-          <p onclick="getPhotosByquery('Flim')">Flim</p>
-          <p onclick="getPhotosByquery('Health')">Health</p>
-          <p onclick="getPhotosByquery('Spirituality')">Spirituality</p>
-          <p onclick="getPhotosByquery('Animals')">Animals</p>
-          <p onclick="getPhotosByquery('Athletics')">Athletics</p>
+          <p class="navLinks" onclick="getPhotosByquery('india')">India</p>
+          <p class="navLinks" onclick="getPhotosByquery('Technology')">Technology</p>
+          <p class="navLinks" onclick="getPhotosByquery('Nature')">Nature</p>
+          <p class="navLinks" onclick="getPhotosByquery('People')">People</p>
+          <p class="navLinks" onclick="getPhotosByquery('Business')">Business</p>
+          <p class="navLinks" onclick="getPhotosByquery('Wallpaper')">Wallpaper</p>
+          <p class="navLinks" onclick="getPhotosByquery('Fashion')">Fashion</p>
+          <p class="navLinks" onclick="getPhotosByquery('Interview')">Interview</p>
+          <p class="navLinks" onclick="getPhotosByquery('Architecture')">Architecture</p>
+          <p class="navLinks" onclick="getPhotosByquery('Flim')">Flim</p>
+          <p class="navLinks" onclick="getPhotosByquery('Health')">Health</p>
+          <p class="navLinks" onclick="getPhotosByquery('Spirituality')">Spirituality</p>
+          <p class="navLinks" onclick="getPhotosByquery('Animals')">Animals</p>
+          <p class="navLinks" onclick="getPhotosByquery('Athletics')">Athletics</p>
         </div>
       </div>
     </nav>
@@ -389,4 +393,4 @@
 </body>
 
 </html>
-<script src="index.bundle.js"></script>
+<script src="./dist/index.bundle.js"></script>
